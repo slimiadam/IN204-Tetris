@@ -6,9 +6,9 @@
 
 class Shape {
     protected:
-        std::vector<int> _center[2];
-        std::vector<int> _color[3];
-        std::vector<int> _distribution[6];
+        std::vector<int> _center(2);
+        std::vector<int> _color(3);
+        std::vector<int> _distribution(6);
 
     public:
         Shape();
