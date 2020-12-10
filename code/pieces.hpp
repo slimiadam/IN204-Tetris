@@ -1,14 +1,17 @@
 #ifndef __PIECES__
 #define __PIECES__
-
+#include <cstdio>
+#include <cstdlib>
+#include <iostream>
 #include <vector>
+#include "point.hpp"
 
 
 class Shape {
     protected:
-        std::vector<int> _center(2);
-        std::vector<int> _color(3);
-        std::vector<int> _distribution(6);
+        Point _center;
+        std::vector<int> _color=std::vector<int>(3);
+        std::vector<Point> _distribution=std::vector<Point>(3);
 
     public:
         Shape();
@@ -26,7 +29,7 @@ class I : public Shape {
         virtual void rotate_left();
         virtual void rotate_right();
     
-}
+};
 
 class J : public Shape {
     public :
@@ -34,7 +37,7 @@ class J : public Shape {
         virtual void rotate_left();
         virtual void rotate_right();
     
-}
+};
 
 class O : public Shape {
     public :
@@ -42,7 +45,7 @@ class O : public Shape {
         virtual void rotate_left();
         virtual void rotate_right();
     
-}
+};
 
 class L : public Shape {
     public :
@@ -50,7 +53,7 @@ class L : public Shape {
         virtual void rotate_left();
         virtual void rotate_right();
     
-}
+};
 
 class T : public Shape {
     public :
@@ -58,7 +61,7 @@ class T : public Shape {
         virtual void rotate_left();
         virtual void rotate_right();
     
-}
+};
 
 class Z : public Shape {
     public :
@@ -66,7 +69,7 @@ class Z : public Shape {
         virtual void rotate_left();
         virtual void rotate_right();
     
-}
+};
 
 class S : public Shape {
     public :
@@ -74,9 +77,7 @@ class S : public Shape {
         virtual void rotate_left();
         virtual void rotate_right();
     
-}
-
-
+};
 
 
 
