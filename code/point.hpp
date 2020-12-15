@@ -18,6 +18,8 @@ class Point {
     bool operator!=(Point other);
     Point operator+=(Point other) ;
     friend std::ostream& operator<<( std::ostream &flux, Point a);
+    int get_x() const;
+    int get_y() const;
 };
 
 Point operator+(Point first, Point second);
