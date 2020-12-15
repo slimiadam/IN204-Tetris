@@ -15,67 +15,70 @@ class Shape {
 
     public:
         Shape();
+        
         void move_right();
         void move_left();
         void move_down();
+        Point get_center();
         virtual void rotate_left() = 0;
         virtual void rotate_right() = 0;
+        virtual ~Shape() {}
 
 };
 
 class I : public Shape {
     public :
         I();
-        virtual void rotate_left();
-        virtual void rotate_right();
+        void rotate_left() {}
+        void rotate_right() {}
     
 };
 
 class J : public Shape {
     public :
         J();
-        virtual void rotate_left();
-        virtual void rotate_right();
+        virtual void rotate_left() {}
+        virtual void rotate_right(){}
     
 };
 
 class O : public Shape {
     public :
         O();
-        virtual void rotate_left();
-        virtual void rotate_right();
+        virtual void rotate_left() {}
+        virtual void rotate_right(){}
     
 };
 
 class L : public Shape {
     public :
         L();
-        virtual void rotate_left();
-        virtual void rotate_right();
+        virtual void rotate_left(){}
+        virtual void rotate_right(){}
     
 };
 
 class T : public Shape {
     public :
         T();
-        virtual void rotate_left();
-        virtual void rotate_right();
+        virtual void rotate_left() {}
+        virtual void rotate_right(){}
     
 };
 
 class Z : public Shape {
     public :
         Z();
-        virtual void rotate_left();
-        virtual void rotate_right();
+        virtual void rotate_left(){}
+        virtual void rotate_right(){}
     
 };
 
 class S : public Shape {
     public :
         S();
-        virtual void rotate_left();
-        virtual void rotate_right();
+        virtual void rotate_left(){}
+        virtual void rotate_right(){}
     
 };
 

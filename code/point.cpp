@@ -17,6 +17,12 @@ Point Point :: operator+=(Point other){
     y += other.y;
     return *this;
 };
+int Point :: get_x() const {
+    return x;
+};
+int Point :: get_y() const {
+    return y;
+};
 
 Point operator+(Point first, Point second){
     return first+=second;
