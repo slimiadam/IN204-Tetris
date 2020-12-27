@@ -1,9 +1,8 @@
 #include "pieces.hpp"
-#include "point.hpp"
+
 
 // Constructor
-Shape :: Shape() : _center(Point(-1,-1))
-{
+Shape :: Shape() : _center(Point(-1,-1)){
     _color[0]=(0);
     _color[1]=(0);
     _color[2]=(0);
@@ -12,31 +11,19 @@ Shape :: Shape() : _center(Point(-1,-1))
     _distribution[2]=Point(-1,-1);
 };
 
-Point Shape:: get_center(){
+Point Shape:: get_center()const{
     return _center;
 }
+std::vector<Point> Shape:: get_distribution() const {
+    return _distribution;
+}
+Point Shape :: get_distribution_i(int i) const {
+    return _distribution[i];
+}
+std::vector<int> Shape :: get_color() const {
+    return _color;
+};
 
-/*void Shape :: move_right(Grid grid){
-    grid.delete_piece(*this);
-    int ok = 1;
-    if (grid._grid[_center.get_x()+ 1][_center.get_y()].is_occupied){
-        ok = 0;
-    }
-    else {
-        int i = 0;
-        while ( i<3 && ok){
-        if (grid._grid[_center.get_x() +_distribution[i].get_x()+ 1][_center.get_y()+_distribution[i].get_y()].is_occupied){
-            ok = 0;
-        }
-        i++;
-        }
-    }
-    if (ok) {
-        _center.
-        grid.add_piece(*this);
-
-    }
-};*/
 void Shape :: move_right(){
     _center=Point(_center.get_x()+1,_center.get_y());
 }
@@ -46,8 +33,8 @@ void Shape :: move_left(){
 void Shape :: move_down() {
     _center=Point(_center.get_x(),_center.get_y()-1);
 }
-I :: I() : Shape()
-{
+
+I :: I() : Shape(){
     _color[0]=(248);
     _color[1]=(248);
     _color[2]=(121);
@@ -56,8 +43,19 @@ I :: I() : Shape()
     _distribution[2]=Point(-1,0);
 };
 
-J:: J() : Shape()
-{
+void I :: rotate_right(){
+    _distribution[0]=Point(0,-2);
+    _distribution[1]=Point(0,-1);
+    _distribution[2]=Point(0,1);
+}
+
+void I::rotate_left() {
+    _distribution[0]=Point(0,2);
+    _distribution[1]=Point(0,1);
+    _distribution[2]=Point(0,-1);
+}
+
+J:: J() : Shape(){
     _color[0]=(36);
     _color[1]=(201);
     _color[2]=(52);
@@ -66,8 +64,19 @@ J:: J() : Shape()
     _distribution[2]=Point(-1,0);
 };
 
-O :: O() : Shape()
-{
+void J::rotate_right(){
+    _distribution[0]=Point(2,0);
+    _distribution[1]=Point(1,0);
+    _distribution[2]=Point(0,1);
+}
+
+void J::rotate_left(){
+    _distribution[0]=Point(-2,0);
+    _distribution[1]=Point(-1,0);
+    _distribution[2]=Point(0,-1);
+}
+
+O :: O() : Shape(){
     _color[0]=0;
     _color[1]=255;
     _color[2]=255;
@@ -76,8 +85,16 @@ O :: O() : Shape()
     _distribution[2]=Point(1,0);
 };
 
-L :: L() : Shape()
-{
+void O::rotate_right(){
+    _distribution[0]=Point(1,1);
+    _distribution[1]=Point(0,1);
+    _distribution[2]=Point(1,0);
+}
+void O::rotate_left(){
+    rotate_right();
+}
+
+L :: L() : Shape(){
     _color[0]=21;
     _color[1]=1;
     _color[2]=217;
@@ -86,8 +103,18 @@ L :: L() : Shape()
     _distribution[2]=Point(1,0);
 };
 
-S :: S() : Shape()
-{
+void L :: rotate_right() {
+    _distribution[0]=Point(2,0);
+    _distribution[1]=Point(1,0);
+    _distribution[2]=Point(0,-1);
+}
+void L :: rotate_left() {
+    _distribution[0]=Point(-2,0);
+    _distribution[1]=Point(-1,0);
+    _distribution[2]=Point(0,1);
+}
+
+S :: S() : Shape(){
     _color[0]=255;
     _color[1]=255;
     _color[2]=255;
@@ -96,8 +123,18 @@ S :: S() : Shape()
     _distribution[2]=Point(-1,0);
 };
 
-Z :: Z() : Shape()
-{
+void S :: rotate_right() {
+    _distribution[0]=Point(-1,-1);
+    _distribution[1]=Point(1,0);
+    _distribution[2]=Point(0,1);
+}
+void S :: rotate_left() {
+    _distribution[0]=Point(-1,1);
+    _distribution[1]=Point(-1,0);
+    _distribution[2]=Point(0,-1);
+}
+
+Z :: Z() : Shape(){
     _color[0]=255;
     _color[1]=0;
     _color[2]=255;
@@ -105,9 +142,18 @@ Z :: Z() : Shape()
     _distribution[1]=Point(0,1);
     _distribution[2]=Point(1,0);
 };
+void Z :: rotate_right() {
+    _distribution[0]=Point(1,1);
+    _distribution[1]=Point(1,0);
+    _distribution[2]=Point(0,-1);
+}
+void Z :: rotate_left() {
+    _distribution[0]=Point(-1,-1);
+    _distribution[1]=Point(-1,0);
+    _distribution[2]=Point(0,1);
+}
 
-T :: T() : Shape()
-{
+T :: T() : Shape(){
     _color[0]=0;
     _color[1]=127;
     _color[2]=255;
@@ -115,3 +161,13 @@ T :: T() : Shape()
     _distribution[1]=Point(1,0);
     _distribution[2]=Point(0,1);
 };
+void T::rotate_right(){
+    _distribution[0]=Point(0,1);
+    _distribution[1]=Point(0,-1);
+    _distribution[2]=Point(1,0); 
+}
+void T::rotate_left(){
+    _distribution[0]=Point(0,-1);
+    _distribution[1]=Point(0,11);
+    _distribution[2]=Point(-1,0); 
+}
