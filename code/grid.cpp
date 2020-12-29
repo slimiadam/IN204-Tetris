@@ -138,7 +138,7 @@ void Grid :: rotate_right(Shape * piece){
 }
 
 void Grid :: delete_piece(Shape* piece){
-    _grid[piece->get_center().get_x()+ 1][piece->get_center().get_y()].change_status(false);
+    _grid[piece->get_center().get_x()][piece->get_center().get_y()].change_status(false);
     int i = 0;
     while ( i<3){
     int x_tmp = piece->get_center().get_x() +piece->get_distribution_i(i).get_x();
@@ -148,7 +148,7 @@ void Grid :: delete_piece(Shape* piece){
     }
 };
 void Grid :: add_piece(Shape* piece){
-    _grid[piece->get_center().get_x()+ 1][piece->get_center().get_y()].change_status(true,piece->get_color());
+    _grid[piece->get_center().get_x()][piece->get_center().get_y()].change_status(true,piece->get_color());
     int i = 0;
     while ( i<3){
     int x_tmp = piece->get_center().get_x() +piece->get_distribution_i(i).get_x();
