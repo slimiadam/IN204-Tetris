@@ -1,4 +1,5 @@
 #include "pieces.hpp"
+#include "point.hpp"
 
 
 // Constructor
@@ -40,6 +41,9 @@ void Shape :: move_left(){
 }
 void Shape :: move_down() {
     _center=Point(_center.get_x(),_center.get_y()-1);
+}
+void Shape :: change_center(int x, int y) {
+    _center=Point(x,y);
 }
 
 I :: I() : Shape(){
@@ -180,15 +184,16 @@ void T::rotate_left(){
     _distribution[2]=Point(-1,0); 
 }
 
-Shape new_piece(){
+Shape::Ptr new_piece(){
     int randNum = rand()%(7);
     switch(randNum){
-        case 0 : return I();
-        case 1 : return J();
-        case 2 : return O();
-        case 3 : return T();
-        case 4 : return L();
-        case 5 : return Z();
-        case 6 : return S();
+        case 0 : return Shape::Ptr(new I());
+        case 1 : return Shape::Ptr(new J());
+        case 2 : return Shape::Ptr(new O());
+        case 3 : return Shape::Ptr(new T());
+        case 4 : return Shape::Ptr(new L());
+        case 5 : return Shape::Ptr(new Z());
+        case 6 : return Shape::Ptr(new S());
+        default : return Shape::Ptr(new I());
     }
 }

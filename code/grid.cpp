@@ -29,7 +29,7 @@ Grid :: Grid(): _height(HEIGHT), _width(WIDTH){
 }
 
 
-void Grid :: move_right(Shape* piece){
+void Grid :: move_right(Shape::Ptr piece){
     delete_piece(piece);
     int ok = 1;
     if ((piece->get_center().get_x()+ 1)>WIDTH || _grid[piece->get_center().get_x()+ 1][piece->get_center().get_y()].is_occupied()){
@@ -55,7 +55,7 @@ void Grid :: move_right(Shape* piece){
         std::cout << "Error" << std::endl;
     }
 };
-void Grid :: move_left(Shape* piece){
+void Grid :: move_left(Shape::Ptr piece){
     delete_piece(piece);
     int ok = 1;
     if ((piece->get_center().get_x()- 1)<0 || _grid[piece->get_center().get_x()- 1][piece->get_center().get_y()].is_occupied()){
@@ -81,7 +81,7 @@ void Grid :: move_left(Shape* piece){
         std::cout << "Error" << std::endl;
     }
 };
-void Grid :: move_down(Shape* piece){
+void Grid :: move_down(Shape::Ptr piece){
     delete_piece(piece);
     int ok = 1;
     if ((piece->get_center().get_y()-1)<0  || _grid[piece->get_center().get_x()][piece->get_center().get_y()-1].is_occupied()){
@@ -109,12 +109,12 @@ void Grid :: move_down(Shape* piece){
     }
 };
 
-void Grid :: rotate_right(Shape * piece){
+void Grid :: rotate_right(Shape::Ptr piece){
     delete_piece(piece);
-    Shape* new_piece(piece);
-    new_piece->rotate_right();
+    Shape::Ptr piece2(piece);  
+    piece2->rotate_right();
     int ok =1;
-    if (new_piece->get_center().get_x()>WIDTH ||new_piece->get_center().get_x() <0 ||  _grid[piece->get_center().get_x()][piece->get_center().get_y()-1].is_occupied()){
+    if (piece2->get_center().get_x()>WIDTH ||piece2->get_center().get_x() <0 ||  _grid[piece->get_center().get_x()][piece->get_center().get_y()-1].is_occupied()){
         ok = 0;
     }
     else{
@@ -129,7 +129,7 @@ void Grid :: rotate_right(Shape * piece){
         }
     }
     if (ok){
-        add_piece(new_piece);
+        add_piece(piece2);
     }
     else{
         add_piece(piece);
@@ -138,7 +138,7 @@ void Grid :: rotate_right(Shape * piece){
 
 }
 
-void Grid :: delete_piece(Shape* piece){
+void Grid :: delete_piece(Shape::Ptr piece){
     _grid[piece->get_center().get_x()][piece->get_center().get_y()].change_status(false);
     int i = 0;
     while ( i<3){
@@ -148,7 +148,11 @@ void Grid :: delete_piece(Shape* piece){
     i++;
     }
 };
-void Grid :: add_piece(Shape* piece){
+void Grid :: add_piece(Shape::Ptr piece){
+    if ((piece->get_center().get_x()==-1) && (piece->get_center().get_y()==-1))
+    {
+        piece->change_center(4,20);
+    }
     _grid[piece->get_center().get_x()][piece->get_center().get_y()].change_status(true,piece->get_color());
     int i = 0;
     while ( i<3){

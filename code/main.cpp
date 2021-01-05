@@ -40,11 +40,12 @@ int main(int argc, char** argv){
 
 //Déclaration des variables
     Grid game_grid;
-    Shape piece = create_piece;
+    Shape::Ptr piece = new_piece();
+    game_grid.add_piece(piece);
 
 //Declaration temps
-    int last_clock_tick_t;
-    int clock_tick_delay;
+    Uint32 last_clock_tick_t=0;
+    Uint32 clock_tick_delay=0;
 
 
 //Démarrage de la SDL et test d'erreur :
@@ -116,9 +117,10 @@ int main(int argc, char** argv){
         Uint8 *key = SDL_GetKeyState(NULL);
         SDL_PollEvent(&event);
 
-        if !(piece.get_can_move)
+        if (!(piece->get_can_move()))
         {
-            piece = new_piece;
+            piece = new_piece();
+            game_grid.add_piece(piece);
         }
         
 
@@ -135,37 +137,37 @@ int main(int argc, char** argv){
             }
 
     //mise a jour delay
-        clock_tick_delay = SDL_GetTicks - last_clock_tick_t;
+        clock_tick_delay = SDL_GetTicks() - last_clock_tick_t;
 
     //actions
         if (key[SDLK_LEFT])    
         {
-            game_grid.move_left(&piece);
+            game_grid.move_left(piece);
         }
 
         if (key[SDLK_RIGHT])    
         {
-            game_grid.move_right(&piece);
+            game_grid.move_right(piece);
         }
 
         if (key[SDLK_DOWN])    
         {
-            game_grid.move_left(&piece);
+            game_grid.move_left(piece);
         }
 
         if (key[SDLK_s])    
         {
-            game_grid.rotate_right(&piece);
+            game_grid.rotate_right(piece);
         }
 
-        for(int i=0; i<22; i++)
-        {
-            for (int j = 0; j < 10; j++)
-            {
-                SDL_FillRect(cell_tab[(21-i)*10+j], NULL, SDL_MapRGB(screen->format, game_grid._grid[i][j].get_color()[0], game_grid._grid[i][j].get_color[0], game_grid._grid[i][j].get_color[0]));
-            }
+        // for(int i=0; i<22; i++)
+        // {
+        //     for (int j = 0; j < 10; j++)
+        //     {
+        //         SDL_FillRect(cell_tab[(21-i)*10+j], NULL, SDL_MapRGB(screen->format, game_grid._grid[i][j].get_color()[0], game_grid._grid[i][j].get_color()[1], game_grid._grid[i][j].get_color()[2]));
+        //     }
             
-        }
+        // }
 
 
 
@@ -174,10 +176,10 @@ int main(int argc, char** argv){
         SDL_BlitSurface(upper_side, NULL, screen, &position_upper_side);
         SDL_BlitSurface(bottom_side, NULL, screen, &position_bottom_side);
         SDL_BlitSurface(tetris_menu, NULL, screen, &position_tetris);
-        for (int i = 0; i < 220; i++)
-        {
-            SDL_BlitSurface(cell_tab[i], NULL, screen, &cell_position[i]);
-        }
+        // for (int i = 0; i < 220; i++)
+        // {
+        //     SDL_BlitSurface(cell_tab[i], NULL, screen, &cell_position[i]);
+        // }
         
 
 

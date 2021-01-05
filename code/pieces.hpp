@@ -2,9 +2,12 @@
 #define __PIECES__
 // #include "common.hpp"
 #include "point.hpp"
-
+#include <memory>
 
 class Shape {
+    public:
+        typedef std::shared_ptr<Shape> Ptr;
+
     protected:
         Point _center;
         std::vector<int> _color=std::vector<int>(3);
@@ -14,6 +17,7 @@ class Shape {
     public:
         Shape();
         bool get_can_move() const;
+        void change_center(int x, int y);
         void change_status();
         void move_right();
         void move_left();
@@ -79,7 +83,7 @@ class S : public Shape {
         void rotate_right();
 };
 
-Shape new_piece();
+Shape::Ptr new_piece();
 
 
 
