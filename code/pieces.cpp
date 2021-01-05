@@ -2,14 +2,22 @@
 
 
 // Constructor
-Shape :: Shape() : _center(Point(-1,-1)){
+Shape :: Shape() : _center(Point(-1,-1)), _can_move(true){
     _color[0]=(0);
     _color[1]=(0);
     _color[2]=(0);
     _distribution[0]=Point(-1,-1);
     _distribution[1]=Point(-1,-1);
     _distribution[2]=Point(-1,-1);
+
 };
+
+bool Shape::get_can_move()const{
+    return _can_move;
+}
+void Shape::change_status(){
+    _can_move=false;
+}
 
 Point Shape:: get_center()const{
     return _center;
@@ -170,4 +178,17 @@ void T::rotate_left(){
     _distribution[0]=Point(0,-1);
     _distribution[1]=Point(0,11);
     _distribution[2]=Point(-1,0); 
+}
+
+Shape new_piece(){
+    int randNum = rand()%(7);
+    switch(randNum){
+        case 0 : return I();
+        case 1 : return J();
+        case 2 : return O();
+        case 3 : return T();
+        case 4 : return L();
+        case 5 : return Z();
+        case 6 : return S();
+    }
 }

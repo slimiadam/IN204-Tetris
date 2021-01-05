@@ -1,6 +1,7 @@
 #ifndef __PIECES__
 #define __PIECES__
-#include "common.hpp"
+// #include "common.hpp"
+#include "point.hpp"
 
 
 class Shape {
@@ -8,10 +9,12 @@ class Shape {
         Point _center;
         std::vector<int> _color=std::vector<int>(3);
         std::vector<Point> _distribution=std::vector<Point>(3);
+        bool _can_move;
 
     public:
         Shape();
-        
+        bool get_can_move() const;
+        void change_status();
         void move_right();
         void move_left();
         void move_down();
@@ -75,6 +78,8 @@ class S : public Shape {
         void rotate_left();
         void rotate_right();
 };
+
+Shape new_piece();
 
 
 

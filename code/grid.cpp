@@ -104,6 +104,7 @@ void Grid :: move_down(Shape* piece){
     }
     else {
         add_piece(piece);
+        piece->change_status();
         std::cout << "Error" << std::endl;
     }
 };

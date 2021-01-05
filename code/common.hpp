@@ -1,5 +1,4 @@
 #ifndef COMMON_HPP
-#define 
 #include <iostream>
 #include <vector>
 #include "point.hpp"
