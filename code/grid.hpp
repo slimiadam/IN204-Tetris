@@ -22,7 +22,7 @@ class Grid {
     public : 
     int _height;
     int _width ;
-    std::vector<std::vector<Box>> _grid = std::vector<std::vector<Box>>(WIDTH);
+    std::vector<std::vector<Box>> _grid = std::vector<std::vector<Box>>(HEIGHT);
 
     public :
     Grid();

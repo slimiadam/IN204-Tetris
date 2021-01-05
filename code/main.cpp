@@ -152,7 +152,7 @@ int main(int argc, char** argv){
 
         if (key[SDLK_DOWN])    
         {
-            game_grid.move_left(piece);
+            game_grid.move_down(piece);
         }
 
         if (key[SDLK_s])    
@@ -160,14 +160,14 @@ int main(int argc, char** argv){
             game_grid.rotate_right(piece);
         }
 
-        // for(int i=0; i<22; i++)
-        // {
-        //     for (int j = 0; j < 10; j++)
-        //     {
-        //         SDL_FillRect(cell_tab[(21-i)*10+j], NULL, SDL_MapRGB(screen->format, game_grid._grid[i][j].get_color()[0], game_grid._grid[i][j].get_color()[1], game_grid._grid[i][j].get_color()[2]));
-        //     }
+        for(int i=0; i<22; i++)
+        {
+            for (int j = 0; j < 10; j++)
+            {
+                SDL_FillRect(cell_tab[(21-i)*10+j], NULL, SDL_MapRGB(screen->format, game_grid._grid[i][j].get_color()[0], game_grid._grid[i][j].get_color()[1], game_grid._grid[i][j].get_color()[2]));
+            }
             
-        // }
+        }
 
 
 
@@ -176,10 +176,10 @@ int main(int argc, char** argv){
         SDL_BlitSurface(upper_side, NULL, screen, &position_upper_side);
         SDL_BlitSurface(bottom_side, NULL, screen, &position_bottom_side);
         SDL_BlitSurface(tetris_menu, NULL, screen, &position_tetris);
-        // for (int i = 0; i < 220; i++)
-        // {
-        //     SDL_BlitSurface(cell_tab[i], NULL, screen, &cell_position[i]);
-        // }
+        for (int i = 0; i < 220; i++)
+        {
+            SDL_BlitSurface(cell_tab[i], NULL, screen, &cell_position[i]);
+        }
         
 
 

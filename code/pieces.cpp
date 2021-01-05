@@ -34,13 +34,13 @@ std::vector<int> Shape :: get_color() const {
 };
 
 void Shape :: move_right(){
-    _center=Point(_center.get_x()+1,_center.get_y());
+    _center=Point(_center.get_x(),_center.get_y()+1);
 }
 void Shape :: move_left(){
-    _center=Point(_center.get_x()-1,_center.get_y());
+    _center=Point(_center.get_x(),_center.get_y()-1);
 }
 void Shape :: move_down() {
-    _center=Point(_center.get_x(),_center.get_y()-1);
+    _center=Point(_center.get_x()-1,_center.get_y());
 }
 void Shape :: change_center(int x, int y) {
     _center=Point(x,y);
