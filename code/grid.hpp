@@ -22,18 +22,18 @@ class Grid {
     public : 
     int _height;
     int _width ;
-    std::vector<std::vector<Box>> _grid = std::vector<std::vector<Box>>(WIDTH);
+    std::vector<std::vector<Box>> _grid = std::vector<std::vector<Box>>(HEIGHT);
 
     public :
     Grid();
-    void delete_piece(Shape* piece); // Supprime la pièce dans la grille 
-    void add_piece(Shape* piece); // Ajoute une pièce dans la grille
+    void delete_piece(Shape::Ptr piece); // Supprime la pièce dans la grille 
+    void add_piece(Shape::Ptr piece); // Ajoute une pièce dans la grille
     bool is_in_grid(int x, int y); // renvoie si x et y sont dans la grille 
-    void move_right(Shape* piece);
-    void move_left(Shape* piece);
-    void move_down(Shape* piece);
-    void rotate_right(Shape* piece);
-    void rotate_left(Shape* piece);
+    void move_right(Shape::Ptr piece);
+    void move_left(Shape::Ptr piece);
+    void move_down(Shape::Ptr piece);
+    void rotate_right(Shape::Ptr piece);
+    void rotate_left(Shape::Ptr piece);
     bool check_line(int y); // true si remplie faux si reste de la place
     void delete_line(int y); // Verifie si la ligne est complèe et si c'est le cas la détruit, et descend les lignes supérieurs)
 };
