@@ -24,6 +24,7 @@ void Reset_Time(int* Time, int* Delay)  // met à jour l'heure du dernier coup d
 }
 
 int main(int argc, char** argv){
+<<<<
     int keep = 1;
 
 //Déclaration des variables d'affichage, des événements, et du temps
@@ -202,4 +203,5 @@ int main(int argc, char** argv){
 
 
     return 0;
+
 }
