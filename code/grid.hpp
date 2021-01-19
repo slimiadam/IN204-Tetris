@@ -1,5 +1,6 @@
-#ifndef __GRID__
-#define __GRID__
+#ifndef CODE__GRID__H__
+#define CODE__GRID__H__
+
 #include <vector>
 #include  "pieces.hpp"
 #define HEIGHT 22
@@ -36,6 +37,8 @@ class Grid {
     void rotate_left(Shape::Ptr piece);
     bool check_line(int y); // true si remplie faux si reste de la place
     void delete_line(int y); // Verifie si la ligne est complèe et si c'est le cas la détruit, et descend les lignes supérieurs)
+    bool ok_down(Shape::Ptr piece, int nb);
+    bool ok_up(Shape::Ptr piece, int nb);
 };
 /*
 template<typename function_move>

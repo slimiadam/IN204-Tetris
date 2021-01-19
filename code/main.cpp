@@ -2,11 +2,11 @@
 #include <cstdlib>
 #include <iostream>
 #include <vector>
-#include <SDL/SDL_ttf.h>
 #include "SDL/SDL.h"
-#include "SDL/SDL_image.h"
+#include <SDL/SDL_ttf.h>
+#include <SDL/SDL_image.h>
+//#include <SDL/SDL_surface.h>
 #include "grid.hpp"
-#include "pieces.hpp"
 #include "point.hpp"
 
 
@@ -24,7 +24,6 @@ void Reset_Time(int* Time, int* Delay)  // met à jour l'heure du dernier coup d
 }
 
 int main(int argc, char** argv){
-<<<<
     int keep = 1;
 
 //Déclaration des variables d'affichage, des événements, et du temps

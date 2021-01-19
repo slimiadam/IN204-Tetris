@@ -3,7 +3,8 @@
 
 
 // Constructor
-Shape :: Shape() : _center(Point(-1,-1)), _can_move(true){
+Shape :: Shape() : _center(Point(-1,-1)),_can_move(true){
+    
     _color[0]=(0);
     _color[1]=(0);
     _color[2]=(0);
@@ -11,9 +12,9 @@ Shape :: Shape() : _center(Point(-1,-1)), _can_move(true){
     _distribution[1]=Point(-1,-1);
     _distribution[2]=Point(-1,-1);
 
-};
+}
 
-bool Shape::get_can_move()const{
+bool Shape::get_can_move() const{
     return _can_move;
 }
 void Shape::change_status(){
@@ -45,6 +46,7 @@ void Shape :: move_down() {
 void Shape :: change_center(int x, int y) {
     _center=Point(x,y);
 }
+
 
 I :: I() : Shape(){
     _color[0]=(248);

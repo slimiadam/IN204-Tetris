@@ -1,5 +1,5 @@
-#ifndef __POINT__
-#define __POINT__
+#ifndef CODE__POINT__HPP
+#define CODE__POINT__HPP
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
@@ -24,4 +24,5 @@ class Point {
 
 Point operator+(Point first, Point second);
 std::ostream& operator<<( std::ostream &flux, Point a);
+
 #endif

@@ -1,5 +1,5 @@
-#ifndef __PIECES__
-#define __PIECES__
+#ifndef CODE__PIECES__HPP
+#define CODE__PIECES__HPP
 // #include "common.hpp"
 #include "point.hpp"
 #include <memory>
