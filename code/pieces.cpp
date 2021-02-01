@@ -67,6 +67,7 @@ void Shape ::  rotate_left(){
 void Shape ::  rotate_right(){
     rotate_left();
     rotate_left();
+    rotate_left()
 }
 
 
