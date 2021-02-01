@@ -126,7 +126,7 @@ int main(int argc, char** argv){
 
     //Quitter la fenetre
         switch(event.type)
-        {
+        {   
             case SDL_QUIT: 
                 keep = 0;
                 break;
