@@ -64,8 +64,8 @@ void Grid :: move_left(Shape::Ptr piece){
     else {
         int i = 0;
         while ( i<3 && ok){
-        int x_tmp = piece->get_center().get_x() +piece->get_distribution_i(i).get_x();
-        int y_tmp = piece->get_center().get_y()+piece->get_distribution_i(i).get_y()-1;
+        int x_tmp = piece->get_center().get_x() + piece->get_distribution_i(i).get_x();
+        int y_tmp = piece->get_center().get_y() + piece->get_distribution_i(i).get_y()-1;
         if (y_tmp < 0  || _grid[x_tmp][y_tmp].is_occupied()){
             ok = 0;
         }
@@ -116,14 +116,17 @@ void Grid :: rotate_right(Shape::Ptr piece){
     int ok =1;
     if ((not(is_in_grid(piece2->get_center().get_x(),piece2->get_center().get_y()))) ||  _grid[piece2->get_center().get_x()][piece2->get_center().get_y()].is_occupied()){
         ok = 0;
+        std::cout << " coucou du centre" << std::endl ;
     }
     else{
         int i = 0;
         while ( i<3 && ok){
         int x_tmp = piece2->get_center().get_x() +piece2->get_distribution_i(i).get_x();
         int y_tmp = piece2->get_center().get_y()+piece2->get_distribution_i(i).get_y();
+        
         if (not(is_in_grid(x_tmp,y_tmp)) || _grid[x_tmp][y_tmp].is_occupied()){
             ok = 0;
+            std::cout << " coucou "  << i << std::endl ;
         }
         i++;
         }
@@ -133,6 +136,7 @@ void Grid :: rotate_right(Shape::Ptr piece){
         add_piece(piece);
     }
     else{
+        std::cout << piece->get_distribution_i(1)== piece2->get_distribution_i(1) << std::endl ;
         add_piece(piece);
         std::cout<< "Error" << std::endl;
     }
