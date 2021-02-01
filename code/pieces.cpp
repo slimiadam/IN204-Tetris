@@ -47,7 +47,7 @@ void Shape :: change_center(int x, int y) {
     _center=Point(x,y);
 }
 
-void Shape ::  rotate_left(){
+void Shape ::  rotate_right(){
     int x_tmp, y_tmp;
     for (int i =0 ; i < 3; i++){
         x_tmp = _distribution[i].get_x();
@@ -64,10 +64,10 @@ void Shape ::  rotate_left(){
     }
 }
 
-void Shape ::  rotate_right(){
-    rotate_left();
-    rotate_left();
-    rotate_left()
+void Shape ::  rotate_left(){
+    rotate_right();
+    rotate_right();
+    rotate_right();
 }
 
 
