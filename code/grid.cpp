@@ -136,7 +136,6 @@ void Grid :: rotate_right(Shape::Ptr piece){
         add_piece(piece);
     }
     else{
-        std::cout << piece->get_distribution_i(1)== piece2->get_distribution_i(1) << std::endl ;
         add_piece(piece);
         std::cout<< "Error" << std::endl;
     }

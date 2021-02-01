@@ -17,7 +17,7 @@
 #define FIELD_WIDTH (FIELD_HEIGHT*12/24)
 #define CELL_SIZE (FIELD_HEIGHT/24)
 
-void Reset_Time(int* Time, int* Delay)  // met à jour l'heure du dernier coup d'horloge et du délai associé.
+void Reset_Time(Uint32* Time, Uint32* Delay)  // met à jour l'heure du dernier coup d'horloge et du délai associé.
 {   
     *Time=SDL_GetTicks();
     *Delay=0;
@@ -46,6 +46,7 @@ int main(int argc, char** argv){
 //Declaration temps
     Uint32 last_clock_tick_t=0;
     Uint32 clock_tick_delay=0;
+    Uint32 time_dec=1500;
 
 
 //Démarrage de la SDL et test d'erreur :
@@ -114,7 +115,6 @@ int main(int argc, char** argv){
 
     while(keep)
     {
-
         Uint8 *key = SDL_GetKeyState(NULL);
         SDL_PollEvent(&event);
 
@@ -139,6 +139,12 @@ int main(int argc, char** argv){
 
     //mise a jour delay
         clock_tick_delay = SDL_GetTicks() - last_clock_tick_t;
+        if (clock_tick_delay>1500)
+        {
+            game_grid.move_down(piece);
+            Reset_Time(&last_clock_tick_t, &clock_tick_delay);
+        }
+        
 
     //actions
         if (key[SDLK_LEFT])    
@@ -158,6 +164,7 @@ int main(int argc, char** argv){
         if (key[SDLK_DOWN])    
         {
             game_grid.move_down(piece);
+            Reset_Time(&last_clock_tick_t, &clock_tick_delay);
         }
 
         if (key[SDLK_s])    
