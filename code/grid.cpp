@@ -111,7 +111,8 @@ void Grid :: move_down(Shape::Ptr piece){
 
 void Grid :: rotate_right(Shape::Ptr piece){
     delete_piece(piece);
-    Shape::Ptr piece2(piece);  
+    //Shape::Ptr piece2(piece);  
+    Shape :: Ptr piece2{piece->cloner();
     piece2->rotate_right();
     int ok =1;
     if ((not(is_in_grid(piece2->get_center().get_x(),piece2->get_center().get_y()))) ||  _grid[piece2->get_center().get_x()][piece2->get_center().get_y()].is_occupied()){
