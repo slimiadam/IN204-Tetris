@@ -14,6 +14,13 @@ Shape :: Shape() : _center(Point(-1,-1)),_can_move(true){
 
 }
 
+Shape :: Shape (Shape const& piece){
+    _center=piece.get_center();
+    _color=piece.get_color();
+    _distribution=piece.get_distribution();
+    _can_move = piece.get_can_move();
+}
+
 bool Shape::get_can_move() const{
     return _can_move;
 }

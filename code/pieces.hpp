@@ -16,6 +16,7 @@ class Shape {
 
     public:
         Shape();
+        Shape (Shape const& piece);
         bool get_can_move() const;
         void change_center(int x, int y);
         void change_status();

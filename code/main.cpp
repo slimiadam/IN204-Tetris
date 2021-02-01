@@ -63,8 +63,8 @@ int main(int argc, char** argv){
     }
 
 //creation fenêtre
-    //screen = SDL_SetVideoMode(1920, 1080, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_FULLSCREEN); 
-    screen = SDL_SetVideoMode(320, 200, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_FULLSCREEN); 
+    screen = SDL_SetVideoMode(1920, 1080, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_FULLSCREEN); 
+    // screen = SDL_SetVideoMode(320, 200, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_FULLSCREEN); 
     if (screen == NULL) // Si l'ouverture a échoué, on le note et on arrête
         {
             fprintf(stderr, "Impossible de charger le mode vidéo : %s\n", SDL_GetError());
@@ -143,11 +143,11 @@ int main(int argc, char** argv){
     //actions
         if (key[SDLK_LEFT])    
         {
-            //game_grid.move_left(piece);
-            auto lambda = [&piece](){
-                piece->move_left();
-            };
-            game_grid.move(piece, lambda);
+            game_grid.move_left(piece);
+            // auto lambda = [&piece](){
+            //     piece->move_left();
+            // };
+            // game_grid.move(piece, lambda);
         }
 
         if (key[SDLK_RIGHT])    
@@ -164,6 +164,10 @@ int main(int argc, char** argv){
         {
             game_grid.rotate_right(piece);
         }
+        // if (key[SDLK_q])    
+        // {
+        //     game_grid.rotate_left(piece);
+        // }
 
         for(int i=0; i<22; i++)
         {
