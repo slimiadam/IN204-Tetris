@@ -37,7 +37,7 @@ class Grid {
     void rotate_right(Shape::Ptr piece);
     void rotate_left(Shape::Ptr piece);
     bool check_line(int y); // true si remplie faux si reste de la place
-    void delete_line(int y); // Verifie si la ligne est complèe et si c'est le cas la détruit, et descend les lignes supérieurs)
+    void delete_line(int y); // Verifie si la ligne est complete et si c'est le cas la détruit, et descend les lignes supérieurs)
     bool ok_down(Shape::Ptr piece, int nb);
     bool ok_up(Shape::Ptr piece, int nb);
 
