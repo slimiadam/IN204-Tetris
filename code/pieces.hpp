@@ -13,7 +13,6 @@ class Shape {
         std::vector<int> _color=std::vector<int>(3);
         std::vector<Point> _distribution=std::vector<Point>(3);
         bool _can_move;
-        Shape (Shape const& piece) = default ; 
 
     public:
         Shape();
@@ -30,56 +29,62 @@ class Shape {
         Point  get_distribution_i(int i) const;
         void rotate_left();
         void rotate_right();
-        virtual Shape* cloner() const = 0 ;
         virtual ~Shape() {}
 
 };
 
 class I : public Shape {
+
     public :
         I();
        // void rotate_left();
        // void rotate_right();
+
     
 };
 
 class J : public Shape {
+
     public :
         J();
+
        // void rotate_left();
         //void rotate_right();
     
 };
 
 class O : public Shape {
+
     public :
         O();
+
+
         //void rotate_left();
         //void rotate_right();
 };
 
 class L : public Shape {
-    protected:
-        L(const L&) = default;
+
     public :
         L();
         //void rotate_left();
         //void rotate_right();
-        L* cloner() const {
-      return new L{*this};
-   }
 };
 
 class T : public Shape {
+
     public :
         T();
+
         //void rotate_left();
         //void rotate_right();
 };
 
 class Z : public Shape {
+
     public :
         Z();
+
        // void rotate_left();
         //void rotate_right();
 };
