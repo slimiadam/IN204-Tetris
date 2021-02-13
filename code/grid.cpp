@@ -25,7 +25,6 @@ Grid :: Grid(): _height(HEIGHT), _width(WIDTH){
             _grid[i][k].change_status();
         }
     }
-    
 }
 
 
@@ -190,26 +189,41 @@ bool Grid :: is_in_grid(int x, int y){
     return (x>=0 && x<HEIGHT && y >=0 && y<WIDTH);
 };
 
-bool Grid :: check_line(int y) {
-    int x = 0 ;
-    int full_line = 0;
-    while (x<WIDTH && not(full_line)){
-        if (_grid[x][y].is_occupied()){
-            full_line = 1;
+bool Grid :: check_line(int x) {
+    int y = 0 ;
+    int full_line = 1;
+    while (y<WIDTH && full_line){
+        if (not(_grid[x][y].is_occupied())){
+            full_line = 0;
         }
         y ++ ;
     }
     return full_line ;
 };
 
-void Grid :: delete_line(int y){
-    if (check_line(y)) {
-        for (int k = y+1 ; k<(HEIGHT-1); k++){
-            for (int i = 0 ; i<WIDTH; i++){
-                _grid[i][k]=_grid[i][k+1];
+void Grid :: delete_line(){
+    int x=0;
+    while (x<HEIGHT)
+    {
+        if (check_line(x)) {
+            for (int k = x ; k < (HEIGHT-1); k++){
+                for (int i = 0 ; i<WIDTH; i++){
+                    _grid[k][i]=_grid[k+1][i];
+                }
+            }
+            for (int i = 0; i < WIDTH; i++)
+            {
+                _grid[HEIGHT-1][i].change_status();
             }
         }
+        else
+        {
+            x++;
+        }
     }
+        
+
+    
 }
 
 bool Grid :: ok_down(Shape::Ptr piece, int nb){
