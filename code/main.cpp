@@ -46,7 +46,11 @@ int main(int argc, char** argv){
 //Declaration temps
     Uint32 last_clock_tick_t=0;
     Uint32 clock_tick_delay=0;
-    Uint32 time_dec=1500;
+    Uint32 time_dec=1200;
+
+    Uint32 last_rotation_t=0;
+    Uint32 rotation_delay=0;
+    Uint32 time_rot=200;
 
 
 //Démarrage de la SDL et test d'erreur :
@@ -121,6 +125,7 @@ int main(int argc, char** argv){
         if (!(piece->get_can_move()))
         {
             piece = new_piece();
+            game_grid.delete_line();
             game_grid.add_piece(piece);
         }
         
@@ -139,7 +144,10 @@ int main(int argc, char** argv){
 
     //mise a jour delay
         clock_tick_delay = SDL_GetTicks() - last_clock_tick_t;
-        if (clock_tick_delay>1500)
+        rotation_delay = SDL_GetTicks() - last_rotation_t;
+
+
+        if (clock_tick_delay>time_dec)
         {
             game_grid.move_down(piece);
             Reset_Time(&last_clock_tick_t, &clock_tick_delay);
@@ -169,7 +177,11 @@ int main(int argc, char** argv){
 
         if (key[SDLK_s])    
         {
-            game_grid.rotate_right(piece);
+            if (rotation_delay > time_rot)
+            {
+                game_grid.rotate_right(piece);
+                Reset_Time(&last_rotation_t, &rotation_delay);
+            }
         }
         // if (key[SDLK_q])    
         // {
