@@ -14,12 +14,13 @@ Shape :: Shape() : _center(Point(-1,-1)),_can_move(true){
 
 }
 
+/*
 Shape :: Shape (Shape const& piece){
     _center=piece.get_center();
     _color=piece.get_color();
     _distribution=piece.get_distribution();
     _can_move = piece.get_can_move();
-}
+}*/
 
 bool Shape::get_can_move() const{
     return _can_move;
@@ -82,9 +83,9 @@ I :: I() : Shape(){
     _color[0]=(248);
     _color[1]=(248);
     _color[2]=(121);
-    _distribution[0]=Point(2,0);
+    _distribution[0]=Point(0,2);
     _distribution[1]=Point(1,0);
-    _distribution[2]=Point(-1,0);
+    _distribution[2]=Point(0,-1);
 };
 
 J:: J() : Shape(){

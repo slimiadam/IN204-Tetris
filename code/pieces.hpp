@@ -16,7 +16,7 @@ class Shape {
 
     public:
         Shape();
-        Shape (Shape const& piece);
+        
         bool get_can_move() const;
         void change_center(int x, int y);
         void change_status();
@@ -34,29 +34,37 @@ class Shape {
 };
 
 class I : public Shape {
+
     public :
         I();
        // void rotate_left();
        // void rotate_right();
+
     
 };
 
 class J : public Shape {
+
     public :
         J();
+
        // void rotate_left();
         //void rotate_right();
     
 };
 
 class O : public Shape {
+
     public :
         O();
+
+
         //void rotate_left();
         //void rotate_right();
 };
 
 class L : public Shape {
+
     public :
         L();
         //void rotate_left();
@@ -64,15 +72,19 @@ class L : public Shape {
 };
 
 class T : public Shape {
+
     public :
         T();
+
         //void rotate_left();
         //void rotate_right();
 };
 
 class Z : public Shape {
+
     public :
         Z();
+
        // void rotate_left();
         //void rotate_right();
 };
