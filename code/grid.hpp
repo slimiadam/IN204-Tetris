@@ -25,11 +25,12 @@ class Grid {
     int _height;
     int _width ;
     std::vector<std::vector<Box>> _grid = std::vector<std::vector<Box>>(HEIGHT);
+    int _score;
 
     public :
     Grid();
     void delete_piece(Shape::Ptr piece); // Supprime la pièce dans la grille 
-    void add_piece(Shape::Ptr piece); // Ajoute une pièce dans la grille
+    bool add_piece(Shape::Ptr piece); // Ajoute une pièce dans la grille
     bool is_in_grid(int x, int y); // renvoie si x et y sont dans la grille 
     void move_right(Shape::Ptr piece);
     void move_left(Shape::Ptr piece);

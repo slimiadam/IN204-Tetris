@@ -29,6 +29,7 @@ class Shape {
         Point  get_distribution_i(int i) const;
         void rotate_left();
         void rotate_right();
+        int get_height();
         virtual ~Shape() {}
 
 };

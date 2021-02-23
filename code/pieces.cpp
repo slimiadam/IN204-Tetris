@@ -1,5 +1,6 @@
 #include "pieces.hpp"
 #include "point.hpp"
+#include <algorithm>
 
 
 // Constructor
@@ -54,6 +55,12 @@ void Shape :: move_down() {
 void Shape :: change_center(int x, int y) {
     _center=Point(x,y);
 }
+int Shape :: get_height(){
+    int h=21;
+    std::vector<int> heights {_center.get_x(), _center.get_x() + _distribution[0].get_x(), _center.get_x() + _distribution[1].get_x(), _center.get_x() + _distribution[2].get_x()};
+    h=*std::max_element(heights.begin(), heights.end());
+    return(h);
+}
 
 void Shape ::  rotate_right(){
     int x_tmp, y_tmp;
@@ -80,11 +87,11 @@ void Shape ::  rotate_left(){
 
 
 I :: I() : Shape(){
-    _color[0]=(248);
-    _color[1]=(248);
-    _color[2]=(121);
+    _color[0]=(220);
+    _color[1]=(50);
+    _color[2]=(50);
     _distribution[0]=Point(0,2);
-    _distribution[1]=Point(1,0);
+    _distribution[1]=Point(0,1);
     _distribution[2]=Point(0,-1);
 };
 

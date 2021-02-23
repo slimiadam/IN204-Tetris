@@ -1,4 +1,7 @@
 #include "grid.hpp"
+#include <vector>
+
+std::vector <int> score_vect{0,40,100,300,1200};
 
 Box :: Box()  : _occupied(true)  {
     _color[0]=(0);
@@ -18,7 +21,7 @@ void Box:: change_status(bool occ=false, std::vector<int> col=std::vector<int>(3
     _occupied =occ;
 };
 
-Grid :: Grid(): _height(HEIGHT), _width(WIDTH){
+Grid :: Grid(): _height(HEIGHT), _width(WIDTH), _score(0) {
     for (int i=0; i<HEIGHT; i++){
         _grid[i].resize(WIDTH);
         for (int k =0; k< WIDTH; k++){
@@ -103,8 +106,8 @@ void Grid :: move_down(Shape::Ptr piece){
     }
     else {
         add_piece(piece);
-        piece->change_status();
-        std::cout << "Error" << std::endl;
+        piece->change_status(); 
+        _score += HEIGHT-1-piece->get_height();
     }
 };
 
@@ -153,7 +156,7 @@ void Grid :: delete_piece(Shape::Ptr piece){
     i++;
     }
 };
-void Grid :: add_piece(Shape::Ptr piece){
+bool Grid :: add_piece(Shape::Ptr piece){
     if ((piece->get_center().get_x()==-1) && (piece->get_center().get_y()==-1))
     {   
         piece->change_center(20,4);
@@ -175,6 +178,7 @@ void Grid :: add_piece(Shape::Ptr piece){
             piece->change_center(-1,-1);
         }
     }
+    if (not(piece->get_center().get_x() == -1)){
     _grid[piece->get_center().get_x()][piece->get_center().get_y()].change_status(true,piece->get_color());
     int i = 0;
     while ( i<3){
@@ -183,6 +187,9 @@ void Grid :: add_piece(Shape::Ptr piece){
     _grid[x_tmp][y_tmp].change_status(true, piece->get_color());
     i++;
     }
+    return true;
+    }
+    else {return false;}
 };
 
 bool Grid :: is_in_grid(int x, int y){
@@ -202,10 +209,12 @@ bool Grid :: check_line(int x) {
 };
 
 void Grid :: delete_line(){
+    int c=0;
     int x=0;
     while (x<HEIGHT)
     {
         if (check_line(x)) {
+            c++;
             for (int k = x ; k < (HEIGHT-1); k++){
                 for (int i = 0 ; i<WIDTH; i++){
                     _grid[k][i]=_grid[k+1][i];
@@ -221,9 +230,7 @@ void Grid :: delete_line(){
             x++;
         }
     }
-        
-
-    
+    _score+=score_vect[c];
 }
 
 bool Grid :: ok_down(Shape::Ptr piece, int nb){
