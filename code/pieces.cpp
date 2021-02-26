@@ -2,7 +2,12 @@
 #include "point.hpp"
 #include <algorithm>
 
-
+void Shape::operator=(Shape::Ptr other) {
+    _center = other->get_center();
+    _can_move = other->get_can_move();
+    _color =  other->get_color();
+    _distribution = other->_distribution;
+}
 // Constructor
 Shape :: Shape() : _center(Point(-1,-1)),_can_move(true){
     

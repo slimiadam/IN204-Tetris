@@ -24,6 +24,7 @@ class Shape {
         void move_left();
         void move_down();
         Point get_center() const;
+        void operator=(Shape::Ptr other) ;
         std::vector<Point> get_distribution() const;
         std::vector<int> get_color() const;
         Point  get_distribution_i(int i) const;
