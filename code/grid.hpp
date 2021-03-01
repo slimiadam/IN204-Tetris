@@ -29,6 +29,7 @@ class Grid {
 
     public :
     Grid();
+    Grid(int height, int width);
     void delete_piece(Shape::Ptr piece); // Supprime la pièce dans la grille 
     bool add_piece(Shape::Ptr piece); // Ajoute une pièce dans la grille
     bool is_in_grid(int x, int y); // renvoie si x et y sont dans la grille 

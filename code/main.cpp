@@ -31,15 +31,18 @@ int main(int argc, char** argv){
 //Déclaration des variables d'affichage, des événements, et du temps
     SDL_Surface *screen = NULL, *blackscreen = NULL, *left_side = NULL, *right_side = NULL, *upper_side = NULL, *bottom_side = NULL;
     SDL_Surface *left_side_2 = NULL, *right_side_2 = NULL, *upper_side_2 = NULL, *bottom_side_2 = NULL;
+    // SDL_Surface *left_side_3 = NULL, *right_side_3 = NULL, *upper_side_3 = NULL, *bottom_side_3 = NULL; //box next piece
     SDL_Surface *tetris_menu = NULL, *score_menu_p1 = NULL, *score_menu_p2 = NULL, *score_p1 = NULL, *score_p2 = NULL ;
     std::vector <SDL_Surface*> cell_tab(220, NULL);
     std::vector <SDL_Surface*> cell_tab_2(220, NULL);
+    std::vector <SDL_Surface*> cell_tab_next_piece(30, NULL);
     SDL_Event event;                                                                             //variable event qui gere les evenements
     SDL_Rect position_blackscreen;
     SDL_Rect position_left_side, position_right_side, position_upper_side, position_bottom_side;
     SDL_Rect position_left_side_2, position_right_side_2, position_upper_side_2, position_bottom_side_2;
+    // SDL_Rect position_left_side_3, position_right_side_3, position_upper_side_3, position_bottom_side_3;
     SDL_Rect position_tetris, position_score_menu_p1, position_score_menu_p2, position_score_p1, position_score_p2;
-    std::vector <SDL_Rect> cell_position(220), cell_position_2(220);
+    std::vector <SDL_Rect> cell_position(220), cell_position_2(220), cell_position_next_piece(30);
     TTF_Font *police_tetris = NULL, *police_score_menu = NULL, *police_score = NULL;
     SDL_Color text_color = { 50, 255, 250 }, score_color = {255,0,0};
     char score_text_p1[10], score_text_p2[10];
@@ -47,14 +50,16 @@ int main(int argc, char** argv){
 //Déclaration des variables
     Grid game_grid;
     Grid second_grid;
+    Grid next_piece_grid(5,6);
     Shape::Ptr piece = new_piece();
     Shape::Ptr next_piece = new_piece();
     game_grid.add_piece(piece);
+    next_piece_grid.add_piece(next_piece);
 
 //Declaration temps
     Uint32 last_clock_tick_t=0;
     Uint32 clock_tick_delay=0;
-    Uint32 time_dec=1200;
+    Uint32 time_dec=1000;
 
     Uint32 last_rotation_t=0;
     Uint32 rotation_delay=0;
@@ -150,6 +155,7 @@ int main(int argc, char** argv){
     position_bottom_side_2.x=1920-FIELD_WIDTH;
     position_bottom_side_2.y=FIELD_HEIGHT-CELL_SIZE;    
 
+
 // Creation des cellules
     //joueur 1
     for (int i = 0; i < 220; i++)
@@ -166,6 +172,14 @@ int main(int argc, char** argv){
         cell_tab_2[i]=SDL_CreateRGBSurface(SDL_HWSURFACE, CELL_SIZE, CELL_SIZE, 32, 0, 0, 0, 0);
         cell_position_2[i].x=position_left_side_2.x+CELL_SIZE+(i%10)*CELL_SIZE;
         cell_position_2[i].y=CELL_SIZE+(i/10)*CELL_SIZE;
+        // SDL_FillRect(cell_tab[i], NULL, SDL_MapRGB(screen->format, (i*20)%255, (i*16)%255, (i*8)%255));
+    }
+
+        for (int i = 0; i < 30; i++)
+    {
+        cell_tab_next_piece[i]=SDL_CreateRGBSurface(SDL_HWSURFACE, CELL_SIZE, CELL_SIZE, 32, 0, 0, 0, 0);
+        cell_position_next_piece[i].x=1920/2-6*CELL_SIZE/2+(i%6)*CELL_SIZE;
+        cell_position_next_piece[i].y=1080-CELL_SIZE-(5-(i/6))*CELL_SIZE;
         // SDL_FillRect(cell_tab[i], NULL, SDL_MapRGB(screen->format, (i*20)%255, (i*16)%255, (i*8)%255));
     }
 
@@ -186,8 +200,6 @@ int main(int argc, char** argv){
     position_score_p2.x = position_score_menu_p2.x + score_menu_p2->w /2 - score_p2->w/2;
     position_score_p2.y = position_score_menu_p2.y + score_menu_p2->h + 10;
 
-
-
     
 
     while(keep)
@@ -195,10 +207,32 @@ int main(int argc, char** argv){
         Uint8 *key = SDL_GetKeyState(NULL);
         SDL_PollEvent(&event);
 
+        //vitesse de jeu
+        if (game_grid._score>=500 && game_grid._score<1000)
+        {
+            time_dec=800;
+        }
+        if (game_grid._score>=1000 && game_grid._score<2000)
+        {
+            time_dec=600;
+        }
+        if (game_grid._score>=2000 && game_grid._score<5000)
+        {
+            time_dec=400;
+        }
+        if (game_grid._score>=5000)
+        {
+            time_dec=200;
+        }
+        
+
         if (!(piece->get_can_move()))
         {
             piece = next_piece;
+            next_piece_grid.delete_piece(next_piece);
             next_piece = new_piece();
+            piece->change_center(-1,-1);
+            next_piece_grid.add_piece(next_piece);
             game_grid.delete_line();
             bool can = game_grid.add_piece(piece);
             if (not(can)){
@@ -282,6 +316,14 @@ int main(int argc, char** argv){
             }
         }
 
+        for(int i=0; i<5; i++)
+        {
+            for (int j = 0; j < 6; j++)
+            {
+                SDL_FillRect(cell_tab_next_piece[(4-i)*6+j], NULL, SDL_MapRGB(screen->format, next_piece_grid._grid[i][j].get_color()[0], next_piece_grid._grid[i][j].get_color()[1], next_piece_grid._grid[i][j].get_color()[2]));
+            }
+        }
+
         // Mise a jour affichage score
         sprintf(score_text_p1, "%d", game_grid._score);
         sprintf(score_text_p2, "%d", second_grid._score);
@@ -324,6 +366,10 @@ int main(int argc, char** argv){
         SDL_BlitSurface(score_p1, NULL, screen, &position_score_p1);
         SDL_BlitSurface(score_p2, NULL, screen, &position_score_p2);
 
+        for (int i = 0; i < 30; i++)
+        {
+            SDL_BlitSurface(cell_tab_next_piece[i], NULL, screen, &cell_position_next_piece[i]);
+        }
 
         SDL_Flip(screen);                
         SDL_Delay(50);
@@ -355,6 +401,11 @@ int main(int argc, char** argv){
     for (int i = 0; i < 220; i++)
     {
         SDL_FreeSurface(cell_tab_2[i]);
+    }
+
+    for (int i = 0; i < 30; i++)
+    {
+        SDL_FreeSurface(cell_tab_next_piece[i]);
     }
 
     TTF_Quit();
