@@ -6,7 +6,9 @@ void Shape::operator=(Shape::Ptr other) {
     _center = other->get_center();
     _can_move = other->get_can_move();
     _color =  other->get_color();
-    _distribution = other->_distribution;
+    _distribution[0] = other->_distribution[0];
+    _distribution[1] = other->_distribution[1];
+    _distribution[2] = other->_distribution[2];
 }
 // Constructor
 Shape :: Shape() : _center(Point(-1,-1)),_can_move(true){

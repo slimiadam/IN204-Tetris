@@ -22,9 +22,19 @@ void Box:: change_status(bool occ=false, std::vector<int> col=std::vector<int>(3
 };
 
 Grid :: Grid(): _height(HEIGHT), _width(WIDTH), _score(0) {
-    for (int i=0; i<HEIGHT; i++){
-        _grid[i].resize(WIDTH);
-        for (int k =0; k< WIDTH; k++){
+    for (int i=0; i<_height; i++){
+        _grid[i].resize(_width);
+        for (int k =0; k< _width; k++){
+            _grid[i][k].change_status();
+        }
+    }
+}
+
+Grid:: Grid(int height, int width) :_height(height), _width(width), _score(0) {
+    _grid.resize(_height);
+    for (int i=0; i<_height; i++){
+        _grid[i].resize(_width);
+        for (int k =0; k< _width; k++){
             _grid[i][k].change_status();
         }
     }
@@ -154,7 +164,7 @@ void Grid :: delete_piece(Shape::Ptr piece){
 bool Grid :: add_piece(Shape::Ptr piece){
     if ((piece->get_center().get_x()==-1) && (piece->get_center().get_y()==-1))
     {   
-        piece->change_center(20,4);
+        piece->change_center(_height-2,_width/2-1);
         bool ok = true;
         if (not(_grid[piece->get_center().get_x()][piece->get_center().get_y()].is_occupied())){
             int i = 0;
