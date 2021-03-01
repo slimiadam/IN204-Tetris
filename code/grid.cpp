@@ -54,7 +54,6 @@ void Grid :: move_right(Shape::Ptr piece){
     }
     else {
         add_piece(piece);
-        std::cout << "Error" << std::endl;
     }
 };
 void Grid :: move_left(Shape::Ptr piece){
@@ -80,7 +79,6 @@ void Grid :: move_left(Shape::Ptr piece){
     }
     else {
         add_piece(piece);
-        std::cout << "Error" << std::endl;
     }
 };
 void Grid :: move_down(Shape::Ptr piece){
@@ -119,7 +117,6 @@ void Grid :: rotate_right(Shape::Ptr piece){
     int ok =1;
     if ((not(is_in_grid(piece2->get_center().get_x(),piece2->get_center().get_y()))) ||  _grid[piece2->get_center().get_x()][piece2->get_center().get_y()].is_occupied()){
         ok = 0;
-        std::cout << " coucou du centre" << std::endl ;
     }
     else{
         int i = 0;
@@ -129,7 +126,6 @@ void Grid :: rotate_right(Shape::Ptr piece){
         
         if (not(is_in_grid(x_tmp,y_tmp)) || _grid[x_tmp][y_tmp].is_occupied()){
             ok = 0;
-            std::cout << " coucou "  << i << std::endl ;
         }
         i++;
         }
@@ -141,7 +137,6 @@ void Grid :: rotate_right(Shape::Ptr piece){
     else{
         piece->rotate_left(); 
         add_piece(piece);
-        std::cout<< "Error" << std::endl;
     }
 
 }

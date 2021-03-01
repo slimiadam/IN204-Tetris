@@ -39,8 +39,6 @@ class I : public Shape {
 
     public :
         I();
-       // void rotate_left();
-       // void rotate_right();
 
     
 };
@@ -50,8 +48,6 @@ class J : public Shape {
     public :
         J();
 
-       // void rotate_left();
-        //void rotate_right();
     
 };
 
@@ -60,17 +56,12 @@ class O : public Shape {
     public :
         O();
 
-
-        //void rotate_left();
-        //void rotate_right();
 };
 
 class L : public Shape {
 
     public :
         L();
-        //void rotate_left();
-        //void rotate_right();
 };
 
 class T : public Shape {
@@ -78,8 +69,6 @@ class T : public Shape {
     public :
         T();
 
-        //void rotate_left();
-        //void rotate_right();
 };
 
 class Z : public Shape {
@@ -87,15 +76,11 @@ class Z : public Shape {
     public :
         Z();
 
-       // void rotate_left();
-        //void rotate_right();
 };
 
 class S : public Shape {
     public :
         S();
-       // void rotate_left();
-         //void rotate_right();
 };
 
 Shape::Ptr new_piece();

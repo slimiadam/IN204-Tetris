@@ -70,35 +70,5 @@ class Grid {
     }
     }
 };
-/*
-template<typename function_move>
-void Grid :: rotate_left(Shape& piece, void Shape :: *function_move()){
-    delete_piece(piece);
-    Shape* new_piece(piece);
-    *new_piece.function_move();
-    int ok =1;
-    if (new_piece->get_center().get_x()>WIDTH ||new_piece->get_center().get_x() <0 ||  _grid[piece->get_center().get_x()][piece->get_center().get_y()-1].is_occupied()){
-        ok = 0;
-    }
-    else{
-        int i = 0;
-        while ( i<3 && ok){
-        int x_tmp = piece->get_center().get_x() +piece->get_distribution_i(i).get_x();
-        int y_tmp = piece->get_center().get_y()+piece->get_distribution_i(i).get_y();
-        if (not(is_in_grid(x_tmp,y_tmp)) || _grid[x_tmp][y_tmp].is_occupied()){
-            ok = 0;
-        }
-        i++;
-        }
-    }
-    if (ok){
-        add_piece(new_piece);
-    }
-    else{
-        add_piece(piece);
-        std::cout<< "Error" << std::endl;
-    }
 
-}
-*/
 #endif

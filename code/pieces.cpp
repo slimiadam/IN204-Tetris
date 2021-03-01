@@ -20,13 +20,7 @@ Shape :: Shape() : _center(Point(-1,-1)),_can_move(true){
 
 }
 
-/*
-Shape :: Shape (Shape const& piece){
-    _center=piece.get_center();
-    _color=piece.get_color();
-    _distribution=piece.get_distribution();
-    _can_move = piece.get_can_move();
-}*/
+
 
 bool Shape::get_can_move() const{
     return _can_move;
@@ -152,91 +146,6 @@ T :: T() : Shape(){
     _distribution[2]=Point(0,1);
 };
 
-/*
-void I :: rotate_right(){
-    _distribution[0]=Point(0,-2);
-    _distribution[1]=Point(0,-1);
-    _distribution[2]=Point(0,1);
-}
-
-void I::rotate_left() {
-    _distribution[0]=Point(0,2);
-    _distribution[1]=Point(0,1);
-    _distribution[2]=Point(0,-1);
-}
-
-
-void J::rotate_right(){
-    _distribution[0]=Point(2,0);
-    _distribution[1]=Point(1,0);
-    _distribution[2]=Point(0,1);
-}
-
-void J::rotate_left(){
-    _distribution[0]=Point(-2,0);
-    _distribution[1]=Point(-1,0);
-    _distribution[2]=Point(0,-1);
-}
-
-
-void O::rotate_right(){
-    _distribution[0]=Point(1,1);
-    _distribution[1]=Point(0,1);
-    _distribution[2]=Point(1,0);
-}
-void O::rotate_left(){
-    rotate_right();
-}
-
-;
-
-void L :: rotate_right() {
-    _distribution[0]=Point(2,0);
-    _distribution[1]=Point(1,0);
-    _distribution[2]=Point(0,-1);
-}
-void L :: rotate_left() {
-    _distribution[0]=Point(-2,0);
-    _distribution[1]=Point(-1,0);
-    _distribution[2]=Point(0,1);
-}
-
-
-
-void S :: rotate_right() {
-    _distribution[0]=Point(-1,-1);
-    _distribution[1]=Point(1,0);
-    _distribution[2]=Point(0,1);
-}
-void S :: rotate_left() {
-    _distribution[0]=Point(-1,1);
-    _distribution[1]=Point(-1,0);
-    _distribution[2]=Point(0,-1);
-}
-
-
-void Z :: rotate_right() {
-    _distribution[0]=Point(1,1);
-    _distribution[1]=Point(1,0);
-    _distribution[2]=Point(0,-1);
-}
-void Z :: rotate_left() {
-    _distribution[0]=Point(-1,-1);
-    _distribution[1]=Point(-1,0);
-    _distribution[2]=Point(0,1);
-}
-
-void T::rotate_right(){
-    _distribution[0]=Point(0,1);
-    _distribution[1]=Point(0,-1);
-    _distribution[2]=Point(1,0); 
-}
-void T::rotate_left(){
-    _distribution[0]=Point(0,-1);
-    _distribution[1]=Point(0,11);
-    _distribution[2]=Point(-1,0); 
-}
-*/
 
 Shape::Ptr new_piece(){
     int randNum = rand()%(7);
